@@ -11,10 +11,13 @@ esp32:
     type: esp-idf
     version: recommended
 
+# Enable logging (currently disabled)
+# logger:
+
 # Enable Home Assistant API - can enable native API or MQTT but NOT both
 #api:
 #  encryption:
-#    key: "<key value>"
+#    key: "NBhc8AYAWj6luh/sxCYUrOpOQ+CoPDjcpqnq1AxDYio="
 
 mqtt:
   broker: !secret mymqttbroker
