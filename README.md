@@ -15,4 +15,5 @@ I left the remaining circuits unmonitored that I didn't have a HA automation sce
 
 Data I currently generate from the Emporia Vue both measured and calculated: 
 
-<img width="870" alt="Screenshot 2023-01-14 at 6 33 35 PM" src="https://user-images.githubusercontent.com/105085397/212719347-735d1d12-ab45-4acd-8c74-31e34abcbd65.png">
+![325657210_1889030221436526_5505722108430067678_n](https://user-images.githubusercontent.com/105085397/212724349-131066e3-5dda-41b9-b201-39f228847678.jpg)
+
