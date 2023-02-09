@@ -65,19 +65,20 @@ time:
     # take the absolute value of the value
     lambda: 'return abs(x);'
   - &dryer_filter
-    # dryer filter 
+    # dryer filter
     lambda: |-
       if (x < 400.0f) { x = max (x, 0.0f); }
       else  { x = (x * 2.0f) + 150.0f; };
       return x;
   - &pool_filter
-    # pool filter 
+    # pool filter
     lambda: |-
-      if (x < 250.0f) { x = max (x, 0.0f); }
-      else  { x = x * 2.0f + 85.0f; };
+      if (x < 100.0f) { x = max (x, 0.0f); }
+      else if ( x < 500.0f) { x = (x * 2.0f) - 3.5f + 21.0f; }
+      else { x = (x * 2.0f) - 11.0f + 92.0f; };
       return x;
   - &ac_comp_filter
-    # ac and compressor filter 
+    # ac and compressor filter
     lambda: |-
       if (x < 250.0f) { x = max (x, 0.0f); }
       else  { x = (x * 2.0f) + 100.0f; };
@@ -180,13 +181,14 @@ sensor:
   - platform: template
     name: "Total Power Balance - Phase A"
     lambda: |-
-      float local_phase_a = id(cir2).state + id(cir3).state + id(cir5).state + id(cir13).state; 
+      float local_phase_a = id(cir2).state + id(cir3).state + id(cir5).state + id(cir13).state;
       float local_phase_b = id(cir1).state + id(cir4).state + id(cir6).state + id(cir7).state + id(cir8).state + id(cir10).state + id(cir12).state;
       float dryer_component;
       if (id(cir11).state > 800.0f ) { dryer_component = ((id(cir11).state) - 150.0f) / 2.0f - 30.0f; }
       else { dryer_component = id(cir11).state; };
       float pool_component;
-      if (id(cir9).state > 600.0f ) { pool_component = ((id(cir9).state - 85.0f) / 2.0f) - 10.f; }
+      if (id(cir9).state > 1500.0f) { pool_component = ((id(cir9).state + 11.0f - 92.0f) / 2.0f) - 11.0f; }
+      else if ( id(cir9).state > 300.0f) { pool_component = ((id(cir9).state + 3.5f - 21.0f) / 2.0f) - 3.5f; }
       else { pool_component = id(cir9).state; };
       float ac_comp_component;
       if (id(cir16).state > 600.0f ) { ac_comp_component = ((id(cir16).state - 140.0f) / 2.0f); }
@@ -203,12 +205,13 @@ sensor:
   - platform: template
     name: "Total Power Balance - Phase B"
     lambda: |-
-      float local_phase_a = id(cir2).state + id(cir3).state + id(cir5).state + id(cir13).state; 
+      float local_phase_a = id(cir2).state + id(cir3).state + id(cir5).state + id(cir13).state;
       float local_phase_b = id(cir1).state + id(cir4).state + id(cir6).state + id(cir7).state + id(cir8).state + id(cir10).state + id(cir12).state;
       float dryer_component = 0.0f;
       if (id(cir11).state > 800.0f ) { dryer_component = ((id(cir11).state) -150.0f) / 2.0f - 120.0f; }
       float pool_component = 0.0f;
-      if (id(cir9).state > 600.0f ) { pool_component = ((id(cir9).state - 85.0f) / 2.0f) + 95.0f; }
+      if (id(cir9).state > 1500.0f) { pool_component = ((id(cir9).state + 11.0f - 92.0f) / 2.0f) + 92.0f; }
+      else if (id(cir9).state > 300.0f) { pool_component = ((id(cir9).state + 3.5f - 21.0f) / 2.0f) + 21.0f; };
       float ac_comp_component = 0.0f;
       if (id(cir16).state > 600.0f ) { ac_comp_component = ((id(cir16).state - 100.0f) / 2.0f) + 100.0f; }
       float oven_component = 0.0f;
