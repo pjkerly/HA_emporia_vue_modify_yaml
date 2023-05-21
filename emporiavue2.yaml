@@ -175,8 +175,8 @@ sensor:
   - { power_id: cir11, platform: total_daily_energy, accuracy_decimals: 0, name: "Clothes Dryer Daily Energy" }
   - { power_id: cir12, platform: total_daily_energy, accuracy_decimals: 0, name: "Master Bedroom Daily Energy" }
   - { power_id: cir13, platform: total_daily_energy, accuracy_decimals: 0, name: "Office Daily Energy" }
-  - { power_id: cir14, platform: total_daily_energy, accuracy_decimals: 0, name: "Oven Daily Energy" }
-  - { power_id: cir15, platform: total_daily_energy, accuracy_decimals: 0, name: "AC Handler Daily Energy" }
+  - { power_id: cir14, platform: total_daily_energy, accuracy_decimals: 0, name: "AC Handler Daily Energy" }
+  - { power_id: cir15, platform: total_daily_energy, accuracy_decimals: 0, name: "Oven Daily Energy" }
   - { power_id: cir16, platform: total_daily_energy, accuracy_decimals: 0, name: "AC Compressor Daily Energy" }
   - platform: template
     name: "Total Power Balance - Phase A"
@@ -239,4 +239,5 @@ sensor:
     id: phase_b_1_ph_balance_power
     filters: *moving_avg
     unit_of_measurement: "W"
+    
 
